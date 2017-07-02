@@ -6,8 +6,10 @@ import {fetchFriends} from '../actions/index';
 class FriendsList extends React.Component {
   
   componentDidMount(){
+    console.log("df")
     this.props.fetchFriends(this.props.friendsUrl);
   }
+
 
   renderListOfFriends(){
     return this.props.friends.list.map((friend) => {

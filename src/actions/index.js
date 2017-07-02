@@ -17,7 +17,7 @@ export function fetchUser(username){
 
 export function fetchFriends(friendsURL){
 
-    const friends = fetch("https://api.github.com/users/SammyIsra/followers").then(resp => resp.json());
+    const friends = fetch(friendsURL).then(resp => resp.json());
 
     return {
         type: FETCH_FRIENDS,

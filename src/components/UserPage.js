@@ -6,13 +6,10 @@ import FriendsList from './FriendsList';
 import {fetchUser} from '../actions/index';
 
 class UserPage extends React.Component {
-
-  state = {
-    username: "SammyIsra"
-  }
   
   componentDidMount(){
-    this.props.fetchUser(this.state.username);
+    console.log(this.props);
+    this.props.fetchUser(this.props.match.params.username || "SammyIsra");
   }
   
   render(){
@@ -23,7 +20,7 @@ class UserPage extends React.Component {
 
     return (
       <div className="UserPage">
-        <h1>{this.state.username}</h1>
+        <h1>{this.props.match.params.username}</h1>
         {this.props.user.loaded? 
           <FriendsList friendsUrl={this.props.user.data.followers_url} />
           :"Loading..."}
