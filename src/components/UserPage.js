@@ -3,15 +3,25 @@ import {connect} from 'react-redux';
 
 import FriendsList from './FriendsList';
 
-import {fetchUser} from '../actions/index';
+import {fetchGithubData} from '../actions/index';
 
 class UserPage extends React.Component {
   
   componentDidMount(){
-    console.log(this.props);
-    this.props.fetchUser(this.props.match.params.username || "SammyIsra");
+    console.log("Mounted!")
+    this.props.fetchGithubData(this.props.match.params.username || "SammyIsra");
   }
-  
+
+  componentDidUpdate(){
+
+    //Component is updated, fetch new user
+    if(this.props.user.data.login !== this.props.match.params.username){
+      console.log("Different User!");
+      this.props.fetchGithubData(this.props.match.params.username);      
+      //Show this.props.unLoadUser? 
+    }
+  }
+
   render(){
 
     if(this.props.user.loaded){
@@ -35,4 +45,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, {fetchUser})(UserPage);
+export default connect(mapStateToProps, {fetchGithubData})(UserPage);

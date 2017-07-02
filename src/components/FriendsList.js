@@ -1,33 +1,38 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import {fetchFriends} from '../actions/index';
+import FriendCard from './FriendCard';
+
+import './FriendsList.css';
 
 class FriendsList extends React.Component {
   
   componentDidMount(){
-    console.log("df")
-    this.props.fetchFriends(this.props.friendsUrl);
+    //this.props.fetchFriends(this.props.friendsUrl);
   }
 
-
   renderListOfFriends(){
-    return this.props.friends.list.map((friend) => {
-      return <p key={friend.id}>{friend.login}</p>;
-    })
+    return this.props.friends.list.map((_friend) => {
+      return (
+        <Link key={_friend.id} to={`/find/${_friend.login}`}> 
+          <FriendCard friend={_friend} ></FriendCard>
+        </Link>
+      );
+    });
   }
   
   render(){
 
     if(this.props.friends.loaded){
-      console.log("Friends:" + this.props.friends.list);
+      console.log("Friends:" + this.props.friends.list.length);
     }
 
     return (
       <div className="FriendsList">
         {this.props.friends.loaded?
           this.renderListOfFriends()
-          :"Loading friends..."}
+          :"Loading friends!"}
       </div>
     );
   }
@@ -39,4 +44,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, {fetchFriends})(FriendsList);
+export default connect(mapStateToProps)(FriendsList);

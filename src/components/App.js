@@ -13,6 +13,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App container">
+          <Route exact path="/" render={props => <div>Search for users</div>} />
           <Route path="/find/:username" component={UserPage} />
         </div>
       </Router>
