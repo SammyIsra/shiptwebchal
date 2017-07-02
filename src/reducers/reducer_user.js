@@ -1,14 +1,27 @@
 import {FETCH_USER} from '../actions';
 
-export default function(state = {userData: {}, loaded:false}, action){
-
-    console.log("Got the user:", action.payload);
+export default function(state = {data: {}, loaded:false, failed:false}, action){
 
     if(action.type === FETCH_USER){
-        return {
-            ...state,
-            loaded: true,
-            data: action.payload
+
+        //User found, no issues
+        if(action.payload.id){
+            return {
+                ...state,
+                loaded: true,
+                failed: false,
+                data: action.payload
+            };
+        } 
+        
+        //User not found, issue
+        else {
+            return {
+                ...state,
+                loaded: false,
+                failed: true,
+                data: {}
+            };
         }
     }else{
         return state;

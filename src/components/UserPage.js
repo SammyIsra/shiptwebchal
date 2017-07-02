@@ -1,12 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import FriendsList from './FriendsList';
+
 import {fetchUser} from '../actions/index';
 
 class UserPage extends React.Component {
+
+  state = {
+    username: "SammyIsra"
+  }
   
   componentDidMount(){
-    this.props.fetchUser();
+    this.props.fetchUser(this.state.username);
   }
   
   render(){
@@ -17,7 +23,10 @@ class UserPage extends React.Component {
 
     return (
       <div className="UserPage">
-
+        <h1>{this.state.username}</h1>
+        {this.props.user.loaded? 
+          <FriendsList friendsUrl={this.props.user.data.followers_url} />
+          :"Loading..."}
       </div>
     );
   }
