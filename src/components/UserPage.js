@@ -26,20 +26,27 @@ class UserPage extends React.Component {
 
   renderLoadMoreButton(){
 
-    //If we have less followers than the user has
-    if(this.props.followersCount < this.props.user.data.followers){
-      const page = Math.floor( this.props.user.data.followers/this.props.followersCount)+1;
-      const onSubmitHandler = (e) => {
-        this.props.fetchMoreFollowers(this.props.user.data.followers_url, page)
-      }
-      return (
-        <button onClick={onSubmitHandler}>
-          Load more followers
-        </button>
-      );
-    } else {
+    //If users havent loaded, OR if followers havent loade, OR if the user fetch failed
+    // Early exit, dont render
+    if(!this.props.user.loaded || !this.props.followersLoaded || this.props.user.failed)
       return undefined;
+
+    //If our list of user followers is LTE to the listed number of followers, early exit
+    if(this.props.followersCount >= this.props.user.followers)
+      return undefined;
+
+    //Page to be loaded
+    const page = Math.floor( this.props.user.data.followers/this.props.followersCount)+1;
+    //Event handler of Load More
+    const onSubmitHandler = (e) => {
+      this.props.fetchMoreFollowers(this.props.user.data.followers_url, page)
     }
+    //Return the Load More button
+    return (
+      <button onClick={onSubmitHandler}>
+        Load more followers
+      </button>
+    );
   }
 
   render(){
@@ -81,7 +88,8 @@ class UserPage extends React.Component {
 function mapStateToProps(state){
   return {
     user: state.user,
-    followersCount: state.followers.list.length
+    followersCount: state.followers.list.length,
+    followersLoaded: state.followers.loaded
   };
 }
 

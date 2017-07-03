@@ -1,34 +1,35 @@
+import * as types from './types';
+
 const rootUrl = "https://api.github.com";
 
-export const FETCH_USER = "FETCH_USER";
-export const FETCH_NEW_FOLLOWERS = "FETCH_NEW_FOLLOWERS";
-export const FETCH_MORE_FOLLOWERS = "FETCH_MORE_FOLLOWERS";
 
 //Fetch the user
 function setUser(userInfo){
 
     return {
-        type: FETCH_USER,
+        type: types.FETCH_USER,
         payload: userInfo
     }
 }
 
-//Fetch list of followers
+//Set list of followers
 function setUserFollowers(followersList){
 
     return {
-        type: FETCH_NEW_FOLLOWERS,
+        type: types.FETCH_NEW_FOLLOWERS,
         payload: followersList
     }
 }
 
+//Add a list of new followers
 function addFollowers(followersList){
     return {
-        type: FETCH_MORE_FOLLOWERS,
+        type: types.FETCH_MORE_FOLLOWERS,
         payload: followersList
     }
 }
 
+//Fetch more folllowers to our list
 export function fetchMoreFollowers(followersUrl, page){
     return (dispatch)=>{
         fetch(`${followersUrl}?page=${page}`).then(resp => resp.json())
@@ -38,7 +39,7 @@ export function fetchMoreFollowers(followersUrl, page){
     }
 }
 
-//Fetch all Github data (user and page 1 of followers)
+//Fetch all Github data (user info and page 1 of followers)
 export function fetchGithubData(username){
 
     return (dispatch) => {
@@ -55,5 +56,4 @@ export function fetchGithubData(username){
             console.error(err);
         })
     }
-
 }

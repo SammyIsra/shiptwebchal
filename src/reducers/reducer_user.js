@@ -1,8 +1,8 @@
-import {FETCH_USER} from '../actions';
+import * as types from '../actions/types';
 
 export default function(state = {data: {}, loaded:false, failed:false}, action){
 
-    if(action.type === FETCH_USER){
+    if(action.type === types.FETCH_USER){
 
         //User found, no issues
         if(action.payload.id){

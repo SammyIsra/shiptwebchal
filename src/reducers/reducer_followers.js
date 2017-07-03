@@ -1,17 +1,11 @@
-import {
-  FETCH_NEW_FOLLOWERS,
-  FETCH_MORE_FOLLOWERS 
-} from '../actions';
+import * as types from '../actions/types';
 
 export default function(state = {list: [], loaded:false}, action){
-  
-  console.log("Got the followers:");
-  console.log(action.payload);
 
   switch(action.type){
 
     //New followers
-    case FETCH_NEW_FOLLOWERS:
+    case types.FETCH_NEW_FOLLOWERS:
       return {
         ...state,
         loaded: true,
@@ -19,7 +13,7 @@ export default function(state = {list: [], loaded:false}, action){
       }
 
     //Add followers to list
-    case FETCH_MORE_FOLLOWERS:
+    case types.FETCH_MORE_FOLLOWERS:
       return {
         ...state,
         loaded: true,
