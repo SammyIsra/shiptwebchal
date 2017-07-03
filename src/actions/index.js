@@ -1,7 +1,8 @@
 const rootUrl = "https://api.github.com";
 
 export const FETCH_USER = "FETCH_USER";
-export const FETCH_FRIENDS = "FETCH_FRIENDS";
+export const FETCH_NEW_FOLLOWERS = "FETCH_NEW_FOLLOWERS";
+export const FETCH_MORE_FOLLOWERS = "FETCH_MORE_FOLLOWERS";
 
 //Fetch the user
 function setUser(userInfo){
@@ -16,7 +17,14 @@ function setUser(userInfo){
 function setUserFollowers(followersList){
 
     return {
-        type: FETCH_FRIENDS,
+        type: FETCH_NEW_FOLLOWERS,
+        payload: followersList
+    }
+}
+
+function addFollowers(followersList){
+    return {
+        type: FETCH_MORE_FOLLOWERS,
         payload: followersList
     }
 }
@@ -25,7 +33,7 @@ export function fetchMoreFollowers(followersUrl, page){
     return (dispatch)=>{
         fetch(`${followersUrl}?page=${page}`).then(resp => resp.json())
         .then(followers => {
-            dispatch(setUserFollowers(followers));            
+            dispatch(addFollowers(followers));            
         });
     }
 }

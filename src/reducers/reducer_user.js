@@ -18,7 +18,7 @@ export default function(state = {data: {}, loaded:false, failed:false}, action){
         else {
             return {
                 ...state,
-                loaded: false,
+                loaded: true,
                 failed: true,
                 data: {}
             };

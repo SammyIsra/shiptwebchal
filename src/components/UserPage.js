@@ -47,21 +47,31 @@ class UserPage extends React.Component {
     // Determine the data displayed 
     //  depending on whether or not the user has been loaded
     const dataDisplay = {};
-    if(this.props.user.loaded){
+    if(this.props.user.loaded && !this.props.user.failed){
       dataDisplay.followers = this.props.user.data.followers;
       dataDisplay.username = this.props.user.data.login;  
     } else {
-      dataDisplay.followers = this.props.match.params.username;
-      dataDisplay.username = '~';
+      dataDisplay.followers = '~';
+      dataDisplay.username = this.props.match.params.username;
     }
 
+    //If the fetch has ended
+    //  If user fetch has failed
+    //     Dispaly failure message
+    //  Else
+    //    Dispaly the follower list
+    //Else
+    //  Dispaly Loading message
     return (
       <div className="UserPage">
         <h1>{dataDisplay.username}</h1>
         <h3>{dataDisplay.followers} Followers</h3>
         {this.props.user.loaded? 
-          <FollowersList followersUrl={this.props.user.data.followers_url} />
-          :"Loading..."}
+          this.props.user.failed? 
+            <div className="errorMessage">User loading failed!</div>
+            : <FollowersList followersUrl={this.props.user.data.followers_url} />
+          : "Loading..."}
+        {this.props.user.failed}
         {this.renderLoadMoreButton()}
       </div>
     );

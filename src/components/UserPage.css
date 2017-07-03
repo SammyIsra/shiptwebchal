@@ -2,3 +2,12 @@
   width: 100%;
   border-radius: 0;
 }
+
+.UserPage .errorMessage {
+  font-size: 3em;
+  color: darkred;
+}
+
+.UserPage .errorMessage::after {
+  content: ' :(';
+}
