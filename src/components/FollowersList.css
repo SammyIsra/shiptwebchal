@@ -9,6 +9,16 @@
   align-content: flex-start;
 }
 
+.FollowersList a {
+  text-decoration: none;
+  color: black;
+}
+
+.FollowersList a:visited {
+  text-decoration: none;
+  color: black;
+}
+
 .FollowersList>* {
   width: 32%;
 }

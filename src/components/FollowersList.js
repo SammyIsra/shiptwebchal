@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import FriendCard from './FriendCard';
+import FollowerCard from './FollowerCard';
 
 import {fetchMoreFollowers} from '../actions';
 
@@ -11,10 +11,10 @@ import './FollowersList.css';
 class FollowersList extends React.Component {
 
   renderListOfFollowers(){
-    return this.props.followers.list.map((_friend) => {
+    return this.props.followers.list.map((follower) => {
       return (
-        <Link key={_friend.id} to={`/find/${_friend.login}`}> 
-          <FriendCard friend={_friend} ></FriendCard>
+        <Link key={follower.id} to={`/find/${follower.login}`}> 
+          <FollowerCard follower={follower} ></FollowerCard>
         </Link>
       );
     });

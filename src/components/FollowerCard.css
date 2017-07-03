@@ -1,0 +1,23 @@
+.FollowerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start
+}
+
+.FollowerCard .avatar{
+  width: 100%;
+  background: white;
+}
+
+.FollowerCard {
+
+  margin-bottom: 5px;
+  background-color: rgba(225, 225, 225, 1);
+}
+
+.FollowerCard .user-label {
+  margin-bottom: 5px;
+  font-size: 2rem;
+
+}
