@@ -12,16 +12,25 @@ function setUser(userInfo){
     }
 }
 
-//Fetch list of friends
-function setUserFriends(friendsList){
+//Fetch list of followers
+function setUserFollowers(followersList){
 
     return {
         type: FETCH_FRIENDS,
-        payload: friendsList
+        payload: followersList
     }
 }
 
-//Fetch all Github data (user and page 1 of friends)
+export function fetchMoreFollowers(followersUrl, page){
+    return (dispatch)=>{
+        fetch(`${followersUrl}?page=${page}`).then(resp => resp.json())
+        .then(followers => {
+            dispatch(setUserFollowers(followers));            
+        });
+    }
+}
+
+//Fetch all Github data (user and page 1 of followers)
 export function fetchGithubData(username){
 
     return (dispatch) => {
@@ -30,8 +39,8 @@ export function fetchGithubData(username){
             dispatch(setUser(user));
             return fetch(user.followers_url).then(resp => resp.json());
         })
-        .then(friends => {
-            dispatch(setUserFriends(friends));
+        .then(followers => {
+            dispatch(setUserFollowers(followers));
         })
         .catch(err => {
             //Handle error

@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import FriendsList from './FriendsList';
+import FollowersList from './FollowersList';
 
-import {fetchGithubData} from '../actions/index';
+import {fetchGithubData, fetchMoreFollowers} from '../actions/index';
+
+import './UserPage.css';
 
 class UserPage extends React.Component {
   
@@ -19,6 +21,24 @@ class UserPage extends React.Component {
       console.log("Different User!");
       this.props.fetchGithubData(this.props.match.params.username);      
       //Show this.props.unLoadUser? 
+    }
+  }
+
+  renderLoadMoreButton(){
+
+    //If we have less followers than the user has
+    if(this.props.followersCount < this.props.user.data.followers){
+      const page = Math.floor( this.props.user.data.followers/this.props.followersCount)+1;
+      const onSubmitHandler = (e) => {
+        this.props.fetchMoreFollowers(this.props.user.data.followers_url, page)
+      }
+      return (
+        <button onClick={onSubmitHandler}>
+          Load more followers
+        </button>
+      );
+    } else {
+      return undefined;
     }
   }
 
@@ -40,8 +60,9 @@ class UserPage extends React.Component {
         <h1>{dataDisplay.username}</h1>
         <h3>{dataDisplay.followers} Followers</h3>
         {this.props.user.loaded? 
-          <FriendsList friendsUrl={this.props.user.data.followers_url} />
+          <FollowersList followersUrl={this.props.user.data.followers_url} />
           :"Loading..."}
+        {this.renderLoadMoreButton()}
       </div>
     );
   }
@@ -49,8 +70,9 @@ class UserPage extends React.Component {
 
 function mapStateToProps(state){
   return {
-    user: state.user
+    user: state.user,
+    followersCount: state.followers.list.length
   };
 }
 
-export default connect(mapStateToProps, {fetchGithubData})(UserPage);
+export default connect(mapStateToProps, {fetchGithubData, fetchMoreFollowers})(UserPage);

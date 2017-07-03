@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import UserReducer from './reducer_user';
-import FriendsReducer from './reducer_friends';
+import FollowersReducer from './reducer_followers';
 
 const rootReducer = combineReducers({
   user: UserReducer,
-  friends: FriendsReducer
+  followers: FollowersReducer
 });
 
 export default rootReducer;

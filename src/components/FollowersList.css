@@ -1,6 +1,6 @@
 
 /* Flex settings */
-.FriendsList {
+.FollowersList {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -9,12 +9,12 @@
   align-content: flex-start;
 }
 
-.FriendsList>* {
+.FollowersList>* {
   width: 32%;
 }
 
 @media only screen and (min-width: 768px){
-  .FriendsList>* {
+  .FollowersList>* {
     width: 24%;
   }
 }
