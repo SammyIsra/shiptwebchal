@@ -15,7 +15,7 @@ class UserPage extends React.Component {
   componentDidUpdate(){
 
     //Component is updated, fetch new user
-    if(this.props.user.data.login !== this.props.match.params.username){
+    if(this.props.user.data.login.toLowerCase() !== this.props.match.params.username.toLowerCase()){
       console.log("Different User!");
       this.props.fetchGithubData(this.props.match.params.username);      
       //Show this.props.unLoadUser? 
@@ -24,13 +24,21 @@ class UserPage extends React.Component {
 
   render(){
 
+    // Determine the data displayed 
+    //  depending on whether or not the user has been loaded
+    const dataDisplay = {};
     if(this.props.user.loaded){
-      console.log(this.props.user.data);
+      dataDisplay.followers = this.props.user.data.followers;
+      dataDisplay.username = this.props.user.data.login;  
+    } else {
+      dataDisplay.followers = this.props.match.params.username;
+      dataDisplay.username = '~';
     }
 
     return (
       <div className="UserPage">
-        <h1>{this.props.match.params.username}</h1>
+        <h1>{dataDisplay.username}</h1>
+        <h3>{dataDisplay.followers} Followers</h3>
         {this.props.user.loaded? 
           <FriendsList friendsUrl={this.props.user.data.followers_url} />
           :"Loading..."}

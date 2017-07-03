@@ -10,5 +10,11 @@
 }
 
 .FriendsList>* {
-  width: 24%;
+  width: 32%;
+}
+
+@media only screen and (min-width: 768px){
+  .FriendsList>* {
+    width: 24%;
+  }
 }

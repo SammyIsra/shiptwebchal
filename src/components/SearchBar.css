@@ -1,0 +1,30 @@
+.SearchBar input {
+  border: none;
+  border-bottom: 1px solid gray;
+  border-radius: 0;
+  width: 80%;
+}
+
+.SearchBar form {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 3rem;
+}
+
+.SearchBar form button {
+  max-width: 20%;
+  border: none;
+}
+
+.SearchBar input:focus {
+  border: gray;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+}
+
+@media only screen and (min-width: 768px){
+  .SearchBar form {
+    width: 70%;
+  }
+}
