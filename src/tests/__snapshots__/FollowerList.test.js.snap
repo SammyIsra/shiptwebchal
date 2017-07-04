@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders list of followers 1`] = `
+<div
+  className="FollowersList"
+>
+  <a
+    href="/find/SammyIsra"
+    onClick={[Function]}
+  >
+    <div
+      className="FollowerCard"
+    >
+      <img
+        alt="Profile avatar of SammyIsra"
+        className="avatar"
+        src="http://i.imgur.com/KB4JPdv.png"
+      />
+      <p
+        className="user-label"
+      >
+        SammyIsra
+      </p>
+    </div>
+  </a>
+</div>
+`;
