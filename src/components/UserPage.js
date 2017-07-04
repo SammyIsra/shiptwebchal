@@ -18,7 +18,6 @@ export class UserPage extends React.Component {
 
     //Component is updated, fetch new user
     if(this.props.user.data.login.toLowerCase() !== this.props.match.params.username.toLowerCase()){
-      console.log("Different User!");
       this.props.fetchGithubData(this.props.match.params.username);      
       //Show this.props.unLoadUser? 
     }
@@ -32,11 +31,13 @@ export class UserPage extends React.Component {
       return undefined;
 
     //If our list of user followers is LTE to the listed number of followers, early exit
-    if(this.props.followersCount >= this.props.user.followers)
+    if(this.props.followersCount >= this.props.user.data.followers)
       return undefined;
 
     //Page to be loaded
-    const page = Math.floor( this.props.user.data.followers/this.props.followersCount)+1;
+    // Current count/page size to determine next page
+    // Getting computer arquitecture flashbacks...
+    const page = Math.floor(this.props.followersCount/30)+1;
     //Event handler of Load More
     const onSubmitHandler = (e) => {
       this.props.fetchMoreFollowers(this.props.user.data.followers_url, page)
