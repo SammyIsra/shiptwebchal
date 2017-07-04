@@ -7,7 +7,7 @@ import {fetchGithubData, fetchMoreFollowers} from '../actions/index';
 
 import './UserPage.css';
 
-class UserPage extends React.Component {
+export class UserPage extends React.Component {
   
   componentDidMount(){
     console.log("Mounted!")

@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 
 import './SearchBar.css';
 
-class SearchBar extends React.Component {
+export class SearchBar extends React.Component {
   
   constructor(props){
     super(props);

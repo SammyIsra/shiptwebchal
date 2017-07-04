@@ -8,23 +8,21 @@ import {fetchMoreFollowers} from '../actions';
 
 import './FollowersList.css';
 
-class FollowersList extends React.Component {
+export class FollowersList extends React.Component {
 
   renderListOfFollowers(){
     return this.props.followers.list.map((follower) => {
       return (
         <Link key={follower.id} to={`/find/${follower.login}`}> 
-          <FollowerCard follower={follower} ></FollowerCard>
+          <FollowerCard 
+            avatar_url={follower.avatar_url} 
+            login={follower.login} />
         </Link>
       );
     });
   }
   
   render(){
-
-    if(this.props.followers.loaded){
-      console.log("Followers:" + this.props.followers.list.length);
-    }
 
     return (
       <div className="FollowersList">
