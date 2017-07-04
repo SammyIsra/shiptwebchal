@@ -36,7 +36,7 @@ React Storybooks are another technology that I would love to try out someday but
 
 Since I am the only person developing the application, setting up a Trello board, Github board, or any other kind of issue tracking and task assignment seemed unnecessary. 
 
-The application does lack logging and extreme case error handling. If I had mroe time, I would accomodate for these.
+The application does lack logging and extreme case error handling. If I had more time, I would accomodate for these.
 
 ## Right now
 This application is production-ready and does gracefully handle most errors and problems. The presentation is clean without feeling lacking and beautiful without feeling unnecessary. It does correctly what it needs to do, and has a defined path from development to production. It has been properly tested and debugged by me. 
