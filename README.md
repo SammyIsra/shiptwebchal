@@ -22,7 +22,7 @@ The application was built with React and uses Redux for data management (with so
  - **Webpack**: Again, not exactly chosen by me but I would have added it anyway if I had not used Create React App. These days an application bundler is indispensable.
 
 ## For the future
-There are some tests that I could not create because of the complexity that Redux, Thunk, and routing added. In the future, I would either remove these technologies and rewrite the tests, or spend a day or two learning how to write tests around them. 
+There are some tests that I could not create because of the complexity that Redux, Thunk, and routing added. In the future, I would either remove these technologies and rewrite the tests, or spend a day or two learning how to write tests around them. UserPage is particularly test-free because of these reasons. While some action creators are tested, not all are because of Redux-Thunk and the fact that they expect data from a third party API.
 
 I intentionally kept styling as minimalistic and barebones as possible. If given more time, the visual language of the application would stay the same: simple. I would, however, add some minor animations to make to smooth out the render of follower lists and the navigation. 
 
@@ -36,8 +36,10 @@ React Storybooks are another technology that I would love to try out someday but
 
 Since I am the only person developing the application, setting up a Trello board, Github board, or any other kind of issue tracking and task assignment seemed unnecessary. 
 
+The application does lack logging and extreme case error handling. If I had mroe time, I would accomodate for these.
+
 ## Right now
 This application is production-ready and does gracefully handle most errors and problems. The presentation is clean without feeling lacking and beautiful without feeling unnecessary. It does correctly what it needs to do, and has a defined path from development to production. It has been properly tested and debugged by me. 
 
 ## Previous experience
-For this application I used knowledge that I aquired while developing my personal (photography website (and soon to be public profile website))[https://github.com/SammyIsra/SammyPhoto/tree/master], the NPM react-photostream package (https://github.com/SammyIsra/photostream-react), and some minor reporting reporting tools for a chatbot called Fred http://fredanalyze.surge.sh/report/58ef07b8744a4018192b5d31 keep in mind, I am not in control of what people ask our innocent robot to analyze so there may be some innapropiate text. You have been advised[
+For this application I used knowledge that I aquired while developing my personal [photography website (and soon to be public profile website)](https://github.com/SammyIsra/SammyPhoto/tree/master), the NPM package [react-photostream](https://github.com/SammyIsra/photostream-react), and some [minor reporting reporting tools for a chatbot called Fred](http://fredanalyze.surge.sh/report/58ef07b8744a4018192b5d31) keep in mind, I am not in control of what people ask our innocent robot to analyze so there may be some innapropiate text. You have been advised.
